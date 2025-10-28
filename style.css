@@ -1,0 +1,792 @@
+.bg,
+.fade {
+  pointer-events: none;
+}
+.press {
+  z-index: 50;
+  pointer-events: auto;
+}
+
+:root {
+  --next-bg: url("asset/Webprograming_middlevideo_main.png");
+  --bg-opacity: 0.5;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+html,
+body {
+  height: 100%;
+  background: #000;
+  overflow: hidden;
+}
+.stage {
+  position: fixed;
+  inset: 0;
+}
+
+.bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  background: #000 center/cover no-repeat;
+  transition: opacity 0.6s ease;
+}
+.bg-current {
+  opacity: var(--bg-opacity);
+  transition: opacity 0.6s ease;
+}
+.bg-next {
+  background-image: var(--next-bg);
+  opacity: 0;
+}
+
+.fade {
+  position: absolute;
+  inset: 0;
+  background: #000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.6s ease;
+}
+
+.logo-wrap {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+.logo {
+  width: clamp(500px, 80vw, 1100px);
+  height: auto;
+  filter: drop-shadow(0 10px 24px rgba(0, 0, 0, 0.55));
+  opacity: 0;
+  transform: scale(0.96);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+}
+body.loaded .logo {
+  opacity: 1;
+  transform: scale(1);
+}
+.press {
+  position: absolute;
+  left: 50%;
+  top: 70%;
+  transform: translate(calc(-50% + 33px), -50%);
+  width: clamp(360px, 46vw, 800px);
+  height: auto;
+  cursor: pointer;
+  filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.6));
+}
+.press:hover {
+  animation: flicker 0.9s steps(2, end) infinite;
+  transform: translate(calc(-50% + 33px), -50%) scale(1.03);
+}
+@keyframes flicker {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.stage.dim-now .fade {
+  transition: none;
+  opacity: 1;
+}
+
+.stage.show-next .bg-next {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .press:hover {
+    animation: none;
+  }
+  .bg,
+  .fade,
+  .logo {
+    transition: none !important;
+  }
+}
+
+.battle-info {
+  position: absolute;
+  left: 3%;
+  top: 2%;
+  width: 36%;
+  height: auto;
+  opacity: 0;
+  transition: opacity 1s ease;
+  z-index: 3;
+}
+
+.stage.show-next .battle-info {
+  opacity: 1;
+}
+
+.white-shape {
+  position: absolute;
+  left: 24%;
+  top: 67%;
+  width: 220px;
+  height: 50px;
+  background: #fff;
+  border-radius: 25px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  z-index: 18;
+  opacity: 0;
+  visibility: hidden;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.3s ease, transform 0.2s ease, visibility 0s linear 0.3s;
+}
+
+.stage.show-next .white-shape {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.3s ease, transform 0.2s ease;
+}
+
+.cta-preorder {
+  width: 100%;
+  height: 100%;
+  background: none;
+  border: none;
+  font-size: 16px;
+  font-weight: 700;
+  color: #000;
+  cursor: pointer;
+  border-radius: 25px;
+  transition: color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
+}
+.cta-preorder:hover {
+  background-color: #222;
+  color: #fff;
+  transform: scale(1.05);
+}
+
+.facebook-box {
+  position: absolute;
+  left: 0%;
+  top: 83%;
+  width: 55px;
+  height: 30px;
+  background: #fff;
+  border-radius: 10%;
+  padding-right: 10%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  display: none;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 8px;
+  z-index: 3;
+  transition: all 0.3s ease;
+}
+
+.stage.show-next .facebook-box {
+  display: flex;
+}
+
+.facebook-icon {
+  width: 21px;
+  height: 21px;
+  object-fit: contain;
+}
+
+.twitter-box {
+  position: absolute;
+  left: 0%;
+  top: 88%;
+  width: 55px;
+  height: 30px;
+  background: #fff;
+  border-radius: 10%;
+  padding-right: 10%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  display: none;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 8px;
+  z-index: 3;
+  transition: all 0.3s ease;
+}
+
+.stage.show-next .twitter-box {
+  display: flex;
+}
+
+.twitter-icon {
+  width: 21px;
+  height: 21px;
+  object-fit: contain;
+}
+
+.instagram-box {
+  position: absolute;
+  left: 0%;
+  top: 93%;
+  width: 55px;
+  height: 30px;
+  background: #fff;
+  border-radius: 10%;
+  padding-right: 10%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  display: none;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 8px;
+  z-index: 3;
+  transition: all 0.3s ease;
+}
+
+.stage.show-next .instagram-box {
+  display: flex;
+}
+
+.instagram-icon {
+  width: 21px;
+  height: 21px;
+  object-fit: contain;
+}
+
+.facebook-box a,
+.twitter-box a,
+.instagram-box a {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 5px;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 10%;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.facebook-box a:hover,
+.twitter-box a:hover,
+.instagram-box a:hover {
+  background-color: #222;
+  transform: scale(1.05);
+}
+
+.facebook-icon,
+.twitter-icon,
+.instagram-icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+.top-menu {
+  position: absolute;
+  top: 25px;
+  right: 80px;
+  display: flex;
+  gap: 50px;
+  z-index: 10;
+  font-family: Arial, sans-serif;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+
+.stage.show-next .top-menu {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.menu-item {
+  color: white;
+  font-size: 17px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.menu-item:hover {
+  color: #f0d15a;
+  transform: scale(1.1);
+}
+
+.search-icon {
+  width: 20px;
+  height: 20px;
+  filter: brightness(0) invert(1);
+  transition: transform 0.2s ease;
+}
+
+.search-icon:hover {
+  transform: scale(1.2);
+}
+
+.trailer {
+  position: absolute;
+  right: 6%;
+  bottom: 8%;
+  width: min(520px, 42vw);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+  z-index: 4;
+}
+
+.stage.show-next .trailer {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.trailer-title {
+  position: absolute;
+  left: 44%;
+  top: 4%;
+  transform: translate(-50%, -50%);
+  margin: 0 0 8px;
+  color: #fff;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  font-size: clamp(15px, 2.2vw, 24px);
+  z-index: 5;
+}
+
+.trailer-card {
+  display: block;
+  position: relative;
+  aspect-ratio: 16/9;
+  transform: translateY(10%) scale(0.9);
+  left: 15%;
+  background: #000;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.45);
+}
+
+.trailer-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.9;
+  transition: transform 0.35s ease, opacity 0.35s ease;
+}
+
+.trailer-card .play {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: clamp(28px, 4vw, 44px);
+  color: #fff;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.8);
+  pointer-events: none;
+}
+
+.trailer-card:hover img {
+  transform: scale(1.03);
+  opacity: 1;
+}
+
+.bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  transition: transform 4s ease-in-out;
+  will-change: transform;
+  animation: none;
+}
+
+.stage.show-next .bg-current {
+  transform: scale(1.1);
+  animation: bgMove 8s ease-in-out infinite alternate;
+}
+
+.stage.to-character .bg-character {
+  transform: scale(1.1);
+  animation: bgMove 8s ease-in-out infinite alternate;
+}
+
+@keyframes textZoom {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.logo {
+  animation: textZoom 1.2s ease-out forwards;
+}
+
+.bg-current {
+  animation: droneMove 5s ease-in-out infinite;
+}
+
+@keyframes droneMove {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-7px) rotate(1deg);
+  }
+  50% {
+    transform: translateY(5px) rotate(-1deg);
+  }
+  75% {
+    transform: translateY(-8px) rotate(1.2deg);
+  }
+}
+
+@keyframes bgZoomPulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.06);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.stage.show-next .bg-next {
+  animation: bgZoomPulse 10s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bg-current,
+  .stage.show-next .bg-next {
+    animation: none !important;
+    transform: scale(1) !important;
+  }
+}
+
+@keyframes introTilt {
+  0% {
+    transform: scale(1.06) rotate(-2deg);
+  }
+  50% {
+    transform: scale(1.06) rotate(2deg);
+  }
+  100% {
+    transform: scale(1.06) rotate(-2deg);
+  }
+}
+
+.stage:not(.show-next) .bg-current {
+  transform-origin: 50% 45%;
+  will-change: transform;
+  animation: introTilt 10s ease-in-out infinite;
+}
+
+.stage.show-next .bg-current {
+  animation: none;
+  transform: none;
+}
+
+:root {
+  --about-bg: url("asset/aboutpage.png");
+}
+
+.bg-about {
+  position: absolute;
+  inset: 0;
+  background: #000 center/cover no-repeat;
+  background-image: var(--about-bg);
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  z-index: 1;
+}
+
+.stage.to-about .bg-about {
+  opacity: 1;
+}
+.stage.to-about .bg-current,
+.stage.to-about .bg-next {
+  opacity: 0;
+}
+
+.stage.to-about .trailer,
+.stage.to-about .facebook-box,
+.stage.to-about .twitter-box,
+.stage.to-about .instagram-box {
+  display: none !important;
+}
+
+.stage.to-about .bg-current {
+  animation: none !important;
+  transform: none !important;
+}
+
+.stage.to-about .bg-about {
+  opacity: 1;
+}
+
+.stage.to-about .bg-current,
+.stage.to-about .bg-next {
+  opacity: 0;
+}
+
+.stage.to-about .battle-info,
+.stage.to-about .white-shape,
+.stage.to-about .facebook-box,
+.stage.to-about .twitter-box,
+.stage.to-about .instagram-box,
+.stage.to-about .trailer {
+  display: none !important;
+}
+
+.about-logo {
+  position: absolute;
+  top: 5%;
+  left: 38%;
+  transform: translateX(-50%);
+  width: 70vw;
+  opacity: 0;
+  z-index: 5;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.stage.to-about .about-logo {
+  opacity: 1;
+  transform: translateX(-50%) scale(1.02);
+}
+
+.stage.to-about .about-logo {
+  animation: aboutLogoFade 1s ease forwards;
+}
+
+@keyframes aboutLogoFade {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+  }
+}
+
+.about-soldier {
+  position: absolute;
+  bottom: 0;
+  right: -5%;
+  width: 85vw;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 1s ease, transform 1s ease;
+  z-index: 6;
+}
+
+.stage.to-about .about-soldier {
+  opacity: 1;
+  transform: translateY(0);
+  animation: soldierEnter 1.2s ease-out forwards;
+}
+
+@keyframes soldierEnter {
+  0% {
+    opacity: 0;
+    transform: translateY(60px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.about-logo,
+.about-soldier,
+.cod-button {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.stage.to-about .about-logo,
+.stage.to-about .about-soldier,
+.stage.to-about .cod-button {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.about-menu {
+  position: absolute;
+  left: 6%;
+  top: 38%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 8;
+  opacity: 0;
+  transform: translateY(8px);
+  pointer-events: none;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.about-menu .item-4 {
+  position: absolute;
+  top: 93%;
+  left: -30%;
+  transform: scale(0.5);
+}
+
+.about-menu .item-5 {
+  position: absolute;
+  top: 120%;
+  left: -30%;
+  transform: scale(0.5);
+}
+
+.stage.to-about .about-menu {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+
+.about-menu .menu-item {
+  display: block;
+  width: clamp(220px, 20vw, 420px);
+}
+.about-menu .menu-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.45));
+  user-select: none;
+}
+
+@keyframes codFlicker {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.about-menu .menu-item:hover img {
+  animation: codFlicker 0.9s steps(2, end) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-menu .menu-item:hover img,
+  .about-menu .item-1 img {
+    animation: none !important;
+    opacity: 1 !important;
+  }
+}
+
+.stage.show-next .white-shape {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* ===== BGM floating control ===== */
+.audio-wrap {
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 1000; /* 항상 최상단으로 */
+  pointer-events: auto; /* 클릭 가능 */
+  user-select: none;
+}
+
+.audio-btn {
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(6px);
+  color: #fff;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  outline: none;
+  transition: transform 0.15s ease, background 0.2s ease, opacity 0.2s ease;
+}
+.audio-btn:hover {
+  transform: scale(1.05);
+  background: rgba(0, 0, 0, 0.7);
+}
+.audio-btn:active {
+  transform: scale(0.97);
+}
+
+/* 아이콘 토글 (기본: 음소거 아이콘 보이기) */
+.audio-btn .ico-sound {
+  display: none;
+}
+.audio-btn.is-on .ico-mute {
+  display: none;
+}
+.audio-btn.is-on .ico-sound {
+  display: inline;
+}
+
+/* 볼륨 슬라이더 (작게, 호버 시 펼침) */
+.audio-vol {
+  width: 0px;
+  opacity: 0;
+  height: 4px;
+  appearance: none;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 999px;
+  transition: width 0.2s ease, opacity 0.2s ease;
+}
+.audio-wrap:hover .audio-vol,
+.audio-vol:focus {
+  width: 90px; /* 펼쳐질 폭 */
+  opacity: 1;
+}
+
+/* 슬라이더 스타일 (크롬/엣지) */
+.audio-vol::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #fff;
+  cursor: pointer;
+  border: none;
+  margin-top: -5px;
+}
+/* 파이어폭스 */
+.audio-vol::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #fff;
+  border: none;
+  cursor: pointer;
+}

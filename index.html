@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Call of Duty Intro</title>
+
+    <!-- 프리로드 -->
+    <link
+      rel="preload"
+      as="image"
+      href="asset/Webprograming_middlevideo_firstpage.png"
+    />
+    <link
+      rel="preload"
+      as="image"
+      href="asset/Webprograming_middlevideo_NAME.png"
+    />
+    <link
+      rel="preload"
+      as="image"
+      href="asset/Webprograming_middlevideo_press.png"
+    />
+    <link
+      rel="preload"
+      as="image"
+      href="asset/Webprograming_middlevideo_main.png"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="stage">
+      <!-- 1) 첫 화면 배경 -->
+      <img
+        id="intel"
+        class="bg bg-current"
+        src="asset/Webprograming_middlevideo_firstpage.png"
+        alt=""
+        decoding="async"
+        fetchpriority="high"
+      />
+
+      <!-- 2) 첫 화면 로고 -->
+      <div class="logo-wrap">
+        <img
+          src="asset/Webprograming_middlevideo_NAME.png"
+          alt="Call of Duty logo"
+          class="logo"
+        />
+      </div>
+
+      <!-- 3) 두 번째 화면 배경 (CSS 변수 --next-bg 로 설정) -->
+      <div class="bg bg-next" aria-hidden="true"></div>
+
+      <div class="bg bg-about" aria-hidden="true"></div>
+
+      <img
+        class="about-logo"
+        src="asset/Webprograming_middlevideo_name2.png"
+        alt="Call of Duty About Logo"
+      />
+
+      <!-- ABOUT 화면 왼쪽 메뉴 -->
+      <nav class="about-menu" aria-label="About section menu">
+        <a class="menu-item item-1" href="#campaign"
+          ><img src="asset/1.png" alt="CAMPAIGN"
+        /></a>
+        <a class="menu-item item-2" href="#Weapon"
+          ><img src="asset/2.png" alt="Weapon"
+        /></a>
+        <a class="menu-item item-3" href="#Spec ops"
+          ><img src="asset/3.png" alt="Spec ops"
+        /></a>
+        <a class="menu-item item-4" href="#Credits"
+          ><img src="asset/4.png" alt="Credits"
+        /></a>
+        <a class="menu-item item-5" href="#Options"
+          ><img src="asset/5.png" alt="Options"
+        /></a>
+      </nav>
+
+      <img
+        class="about-soldier"
+        src="asset/character.png"
+        alt="Soldier character"
+      />
+
+      <!-- 4) 두 번째 화면에서 나타날 정보 이미지 (한 번만) -->
+      <img
+        class="battle-info"
+        src="asset/Webprograming_middlevideo_text.png"
+        alt="About the game text"
+      />
+
+      <div class="white-shape">
+        <button class="cta-preorder">PREORDER NOW</button>
+      </div>
+
+      <!-- 6) 첫 화면에서 누르는 버튼 이미지 -->
+      <img
+        class="press"
+        src="asset/Webprograming_middlevideo_press.png"
+        alt="PRESS START"
+      />
+
+      <div class="white-shape facebook-box">
+        <img src="asset/facebook.png" alt="Facebook" class="facebook-icon" />
+      </div>
+
+      <div class="white-shape twitter-box">
+        <img src="asset/twitter.png" alt="twitter" class="twitter-icon" />
+      </div>
+
+      <div class="white-shape instagram-box">
+        <img src="asset/instagram.png" alt="Instagram" class="instagram-icon" />
+      </div>
+
+      <div class="facebook-box">
+        <a
+          href="https://www.facebook.com"
+          target="_blank"
+          aria-label="Facebook"
+        >
+          <img src="asset/facebook.png" alt="Facebook" class="facebook-icon" />
+        </a>
+      </div>
+
+      <!-- Twitter -->
+      <div class="twitter-box">
+        <a href="https://twitter.com" target="_blank" aria-label="Twitter">
+          <img src="asset/twitter.png" alt="Twitter" class="twitter-icon" />
+        </a>
+      </div>
+
+      <!-- Instagram -->
+      <div class="instagram-box">
+        <a
+          href="https://www.instagram.com"
+          target="_blank"
+          aria-label="Instagram"
+        >
+          <img
+            src="asset/instagram.png"
+            alt="Instagram"
+            class="instagram-icon"
+          />
+        </a>
+      </div>
+
+      <div class="top-menu">
+        <div class="menu-item">Home</div>
+        <div class="menu-item">Games</div>
+        <div class="menu-item">Platforms</div>
+        <div
+          class="menu-item"
+          a
+          href="about.png"
+          class="menu-item"
+          id="nav-about"
+          role="button"
+          aria-label="Open About"
+        >
+          About
+        </div>
+
+        <div class="menu-item search">
+          <img src="asset/magnifier.png" alt="Search" class="search-icon" />
+        </div>
+      </div>
+
+      <section class="trailer" aria-label="Release trailer">
+        <h2 class="trailer-title">RELEASE TRAILER</h2>
+        <a
+          class="trailer-card"
+          href="https://www.youtube.com/watch?v=bH1lHCirCGI"
+          target="_blank"
+          rel="noopener"
+        >
+          <img
+            src="asset/trailerthumbnail.png"
+            alt="Call of Duty Trailer Thumbnail"
+            class="trailer-thumb"
+          />
+          <span class="play">▶</span>
+        </a>
+      </section>
+      <!-- BGM (처음엔 멈춤/뮤트) -->
+      <audio
+        id="bgm"
+        src="asset/blockbuster.mp3"
+        preload="auto"
+        loop
+        muted
+      ></audio>
+
+      <!-- 소리 버튼 + 볼륨 슬라이더 -->
+      <div class="audio-wrap" aria-label="Background music controls">
+        <button
+          id="audioBtn"
+          class="audio-btn"
+          aria-pressed="false"
+          aria-label="Turn sound on"
+        >
+          <span class="ico ico-mute" aria-hidden="true">🔇</span>
+          <span class="ico ico-sound" aria-hidden="true">🔊</span>
+        </button>
+        <input
+          id="audioVol"
+          class="audio-vol"
+          type="range"
+          min="0"
+          max="1"
+          step="0.01"
+          value="0.5"
+          aria-label="Volume"
+        />
+      </div>
+    </main>
+
+    <script>
+      // 로드 완료 표시(로고 페이드인 등)
+      const intel = document.getElementById("intel");
+      if (intel.complete) document.body.classList.add("loaded");
+      else
+        intel.addEventListener("load", () =>
+          document.body.classList.add("loaded")
+        );
+
+      // 클릭 → 즉시 어둡게 → 0.5초 뒤 다음 화면
+      const stage = document.querySelector(".stage");
+      const press = document.querySelector(".press");
+      press.addEventListener("click", () => {
+        stage.classList.add("dim-now"); // 바로 어둡게
+        setTimeout(() => {
+          stage.classList.add("show-next"); // 두 번째 화면 보이기
+          document.querySelector(".logo-wrap").style.display = "none"; // 첫 화면 로고 숨김
+          press.style.display = "none"; // PRESS START 숨김
+          stage.classList.remove("dim-now"); // 어둡게 해제(transition으로 자연스럽게)
+        }, 500);
+      });
+
+      const navAbout = document.getElementById("nav-about");
+
+      navAbout.addEventListener("click", (e) => {
+        e.preventDefault();
+        stage.classList.add("to-about"); // About 상태 전환
+      });
+
+      // Home 클릭 → 원래 화면으로 복귀
+      document
+        .querySelector(".top-menu .menu-item:first-child")
+        ?.addEventListener("click", () => {
+          stage.classList.remove("to-about");
+        });
+    </script>
+    <script>
+      // === BGM 컨트롤 ===
+      const audio = document.getElementById("bgm");
+      const btn = document.getElementById("audioBtn");
+      const vol = document.getElementById("audioVol");
+
+      // 저장된 상태가 있으면 복원 (선택사항)
+      const savedVol = localStorage.getItem("bgm_vol");
+      const savedOn = localStorage.getItem("bgm_on") === "1";
+
+      if (savedVol !== null) {
+        vol.value = Number(savedVol);
+        audio.volume = Number(savedVol);
+      } else {
+        audio.volume = Number(vol.value);
+      }
+
+      // 시작은 항상 muted + paused (자동재생 정책 회피)
+      audio.muted = true;
+
+      const updateUI = () => {
+        if (!audio.paused && !audio.muted) {
+          btn.classList.add("is-on");
+          btn.setAttribute("aria-pressed", "true");
+          btn.setAttribute("aria-label", "Turn sound off");
+        } else {
+          btn.classList.remove("is-on");
+          btn.setAttribute("aria-pressed", "false");
+          btn.setAttribute("aria-label", "Turn sound on");
+        }
+      };
+
+      // 버튼 클릭: 토글 재생/음소거
+      btn.addEventListener("click", async () => {
+        try {
+          if (audio.paused || audio.muted) {
+            audio.muted = false;
+            audio.currentTime = 30; // ✅ 시작 시점을 30초로 설정 (원하는 위치로 변경 가능)
+            audio.volume = Number(vol.value);
+            await audio.play();
+            localStorage.setItem("bgm_on", "1");
+          } else {
+            audio.pause();
+            localStorage.setItem("bgm_on", "0");
+          }
+          updateUI();
+        } catch (e) {
+          console.warn("오디오 재생 실패:", e);
+        }
+      });
+
+      // 볼륨 변경
+      vol.addEventListener("input", () => {
+        audio.volume = Number(vol.value);
+        localStorage.setItem("bgm_vol", String(vol.value));
+      });
+
+      // 페이지 재방문 시 자동으로 이전 on/off 복원 (사용자 제스처 필요 없게)
+      // 단, 일부 iOS 브라우저는 여전히 첫 클릭 전까진 재생을 막을 수 있음
+      window.addEventListener("load", async () => {
+        if (savedOn) {
+          try {
+            audio.muted = false;
+            await audio.play();
+          } catch {
+            // 자동 재생이 막히면 버튼 누르면 됨
+          }
+        }
+        updateUI();
+      });
+
+      // 탭이 백그라운드 갔다 돌아올 때 가끔 멈추면 살짝 재시도
+      document.addEventListener("visibilitychange", async () => {
+        if (!document.hidden && savedOn && audio.paused && !audio.muted) {
+          try {
+            await audio.play();
+          } catch {}
+          updateUI();
+        }
+      });
+    </script>
+    <audio id="bgm" src="asset/blockbuster.mp3" autoplay loop></audio>
+  </body>
+</html>
